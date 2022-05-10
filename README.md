@@ -464,3 +464,520 @@ Command: !gvim mult_8_netlsit.v
 
 ![image](https://user-images.githubusercontent.com/77483516/167568699-ba81dc9e-e0a7-4d60-9bfc-9aae96f3137c.png)
 
+
+
+DAY 3:   
+
+SKY130RTL D3SK2 L1 Lab06 Combinational Logic Optimisations part1: 
+
+OPT_CHECK OPTIMISZATION AND SYNTHESIS: 
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog opt_check.v 
+
+Command: synth –top opt_check 
+
+![image](https://user-images.githubusercontent.com/77483516/167589189-4909e682-71db-445a-b62d-93f34788f22e.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167589257-53f56b65-6659-43ca-b31b-800063099d40.png)
+
+Command: opt_clean –purge 
+
+This command helps in identifying and removing the unused cells in the design. 
+
+![image](https://user-images.githubusercontent.com/77483516/167589367-aff984f3-c966-48dc-b9b0-87ce22295243.png)
+
+Command: abc –liberty  ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: show 
+
+![image](https://user-images.githubusercontent.com/77483516/167589474-db49c812-8584-487a-88c4-74249dd3d1a3.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167589565-f87318a2-fcb4-42b4-ba8b-883bf06c6fcf.png)
+
+OBSERVATIONS:  
+
+1) When one of the inputs of a multiplexer is zero, the design can be optimised as an AND gate. 
+
+
+
+OPT_CHECK2 OPTIMISZATION AND SYNTHESIS: 
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog opt_check2.v 
+
+Command: synth –top opt_check2
+
+![image](https://user-images.githubusercontent.com/77483516/167589723-b0c11be0-fa99-40c3-ad83-5b632d9083ac.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167589811-bded376a-174e-45eb-8428-119ff3f43774.png)
+
+Command: opt_clean –purge 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: show 
+
+![image](https://user-images.githubusercontent.com/77483516/167589916-966c2b14-46e2-4726-bb39-3905ec4750ca.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167589971-82cd28d7-14f7-4ae5-9ef1-7dc04b184e40.png)
+
+OBSERVATIONS: 
+
+1) When one of the inputs of multiplexer is one, the design can be optimised as a OR gate. 
+
+2) Instead of generating OR gate from Nand gates, the updated standard cell library had an OR gate.  
+
+
+**SKY130RTL D3SK2 L2 Lab06 Combinational Logic Optimisations part2: **
+
+OPT_CHECK3 OPTIMIZATION AND  SYNTHESIS : 
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog opt_check3.v 
+
+Command: synth –top opt_check3 
+
+![image](https://user-images.githubusercontent.com/77483516/167590243-3e5ab140-74ca-4184-bc1f-091c64a0db77.png)
+
+Command: opt_clean –purge 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: show
+
+![image](https://user-images.githubusercontent.com/77483516/167590378-d54c69ae-bba1-4e65-b1b0-9527128f8b33.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167590432-ee5a88dd-2c51-4bc7-8d1b-3c561baaeb9f.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167590488-1e2bf99b-2937-401b-8f61-6d3cc620a468.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167590557-c8d513c9-f1c3-43bf-938c-a1d0cbe3b813.png)
+ 
+OBSERVATIONS: The two multiplexers in the opt_check3.v are optimised as single 3 input AND gate. Because, one the inputs of the two multiplexers are zero they are optimised to AND gates as in opt_check.v. 
+
+![image](https://user-images.githubusercontent.com/77483516/167590677-a41cd65c-14b1-4f11-8619-0270b9ddb470.png)
+
+OPT_CHECK4.V OPTIMISATION AND SYNTHESIS: 
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog opt_check4.v 
+
+Command: synth –top opt_check4 
+
+Command: opt_clean –purge 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: show 
+
+![image](https://user-images.githubusercontent.com/77483516/167590819-34d0fffb-7062-47c2-87f4-cd89a5e43e9b.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167590905-37fe099c-6656-4624-9d29-572b6c0de2ba.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167590984-c263c857-0684-4104-8364-b25e3abc714e.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167591026-0bcb9704-50a2-4318-9ee7-52f2e1052c81.png)
+
+OBSERVATIONS: The opt_check4.v design is simplified as an XNOR gate.
+
+MULTIPLE_MODULE_OPT.V OPTIMIZATION AND SYNTHESIS: 
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog multiple_module_opt.v 
+
+Command: synth –top multiple_module_opt 
+
+Command: flatten 
+
+Command: opt_clean –purge 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: show 
+
+![image](https://user-images.githubusercontent.com/77483516/167591179-ec56f934-4f99-48a9-aefd-67dba85038d3.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167591232-ad6c186b-cdb1-4ec7-8de7-7090b91644c2.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167591277-34f103d5-557f-4959-aa3f-0c6aafc1d5b7.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167591378-df6c65a8-f00a-4de3-a916-0578f21f27b6.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167591488-09cd35ff-2727-432f-aa24-052259e62195.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167591733-50a72397-f803-425c-9e12-838e9cb6ea69.png)
+
+Command: write_verilog –noattr multiple_module_opt_netlist.v 
+
+Command: !gvim multiple_module_opt_netlist.v 
+
+![image](https://user-images.githubusercontent.com/77483516/167591836-8b684741-e844-4440-b6a2-4fd2d539069a.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167591880-aae6e9d1-3132-437d-85ab-cfa9edb2b147.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167591935-77cca596-9ea5-4cf9-b2b3-0d6bea7d85f9.png)
+
+OBSERVATIONS:  
+
+1)The multiple_module_opt.v  is optimised to a two input AND gate and two input OR gate using boolean logic optimization. 
+
+2)The U1 module is simplified to a. 
+
+MULTIPLE_MODULE_OPT2.V OPTIMIZATION AND SYNTHESIS: 
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog multiple_module_opt.v 
+
+Command: synth –top multiple_module_opt2 
+
+Command: flatten 
+
+Command: opt_clean –purge 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: show 
+
+Command: write_verilog –noattr multiple_module_opt2_netlist.v 
+
+Command: !gvim multiple_module_module_opt2_netlist.v 
+
+![image](https://user-images.githubusercontent.com/77483516/167592133-630740f1-92dc-4dac-ae7c-27f13b2e20f6.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167592200-3c8e5f99-8e1c-4d39-beab-d77590cdea1a.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167592241-61a2fab3-a7b3-488a-b31b-1409c27c13d3.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167592355-ecd7524b-365f-4394-a83a-a91f849ccc41.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167592502-54b84763-2fb0-4862-b554-25beaf53553f.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167592545-c5f42dce-3828-4464-82a3-4a61146a1d56.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167592602-4c1098cd-3653-4c78-8358-2fa2ea9e0045.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167592643-fe32c9b9-0597-49da-8224-162dde6662bc.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167592749-3102cda7-c367-49d8-b355-1d543a1b3eb8.png)
+
+OBSERVATIONS: 
+
+1) The synthesizer optimised the multiple_module_opt2.v using constant propagation optimization. 
+
+2) The synthesizer optimized the output to zero. 
+
+ 
+
+**SKY130RTL D3SK3 L1 Lab07 Sequential Logic Optimisations part1:** 
+
+DFF_CONST1 SIMULATION: 
+
+Command: iverilog dff_const1.v tb_dff_const1.v 
+
+Command: ./a.out 
+
+Command: gtkwave tb_dff_const1.vcd 
+
+![image](https://user-images.githubusercontent.com/77483516/167592937-73e58ab0-2bf8-45ea-a6b9-9d7edf7881bf.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167593002-93b79d1e-9760-46ad-9ece-0a83958a3200.png)
+
+OBSERVATIONS: The q doesn’t change value when reset is low. Q will change value only with the posedge of the clock. 
+
+DFF_CONST2 SIMULATION: 
+
+Command: iverilog dff_const1.v tb_dff_const2.v 
+
+Command: ./a.out 
+
+Command: gtkwave tb_dff_const2.vcd 
+
+![image](https://user-images.githubusercontent.com/77483516/167593336-a8a477d5-48ad-4d19-972e-77e84389a5cd.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167593386-0208179d-1bb3-4f21-ab76-8a8a6e40b507.png)
+
+OBSERVATIONS: The q value is always one.
+
+ 
+
+DFF_CONST1.V SYNTHESIS: 
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog dff_const1.v 
+
+Command: synth –top dff_const1 
+
+Command: dfflibmap –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: show 
+
+![image](https://user-images.githubusercontent.com/77483516/167593538-e48482fa-da40-4a89-b2bd-7e8eb51561fc.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167593599-d573fabf-0f78-4a11-895d-bb9816d9d3f7.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167593696-4f408020-bf6e-41a8-bd66-3a790bd773c4.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167593750-3338c722-7e80-4814-a2af-b62a410156e9.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167593790-efe8de04-5d2c-4c2a-b322-88a65c1e0872.png)
+
+OBSERVATIONS: As stated before, the D_flip_flop in the netlist is active_low. So, the synthesizer used an inverter to change rest from active_high to active_low. 
+
+
+
+**SKY130RTL D3SK3 L2 Lab07 Sequential Logic Optimisations part2:** 
+
+DFF_CONST2.V SYNTHESIS 
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog dff_const2.v 
+
+Command: synth –top dff_const2 
+
+Command: dfflibmap –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: show 
+
+![image](https://user-images.githubusercontent.com/77483516/167594642-0f7f96b8-fa4b-41d2-b167-b72ef973b304.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167594704-9cb2656d-aaf7-41f0-b140-f8a5a2108bb7.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167594762-ae5ae139-bc1a-4464-b7ae-c089c2db7d9a.png)
+
+OBSERVATION: ABC command ‘s result is indicating that there is no standard cell. 
+
+![image](https://user-images.githubusercontent.com/77483516/167594888-dabed410-df63-4fe3-9d00-2a7188797f91.png)
+
+**SKY130RTL D3SK3 L2 Lab07 Sequential Logic Optimisations part3:** 
+
+DFF_CONST3.V SIMULATION, OPTIMIZATION AND SYNTHESIS: 
+
+Command: iverilog dff_const3.v tb_dff_const3.v 
+
+Command: ./.aout 
+
+Command:  gtkwave tb_dff_const3.vcd 
+
+![image](https://user-images.githubusercontent.com/77483516/167595066-71ee201e-ff1b-49bb-b870-1f37956f4305.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167595156-fa5eb570-d1bb-4d8f-895f-1ffde366b140.png)
+
+OBSERVATIONS: 
+q=1 at every instant except at the moment in the above figure. So, the flipflop can’t be optimised. 
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog dff_const3.v 
+
+Command: synth –top dff_const3 
+
+Command: dfflibmap –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: show 
+
+![image](https://user-images.githubusercontent.com/77483516/167595347-294de5d1-9ab9-4e13-a353-bad57a2a16bf.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167595412-0c10d7d7-7e28-4073-8a1c-20a09d7c7106.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167595510-a97134d5-1804-412b-b396-1a915c55c12e.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167595572-f843411b-181c-435a-8c56-9a6f60bef99e.png)
+
+OBSERVATIONS: 
+Because q cannot be optimised, the circuit remains unoptimized. 
+
+
+DFF_CONST4.V SIMULATION, OPTIMIZATION AND SYNTHESIS: 
+
+Command: iverilog dff_const4.v tb_dff_const4.v 
+
+Command: ./.aout 
+
+Command:  gtkwave tb_dff_const4.vcd 
+
+![image](https://user-images.githubusercontent.com/77483516/167595766-298a6e80-8efa-4412-98ad-b3d19bf24c6c.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167595814-cefdf1c2-1c64-4611-bd2a-934f29d6baf1.png)
+
+OBSERVATIONS: The q is always one. 
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog dff_const4.v 
+
+Command: synth –top dff_const4 
+
+Command: dfflibmap –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: show 
+
+![image](https://user-images.githubusercontent.com/77483516/167595946-3e3a3a30-fa1a-4307-887f-15d7b41cf396.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167596003-d549be2b-1d56-4865-af44-d91f41cd8857.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167596051-1e775eca-fbd4-4468-b12e-c0f49c8b2e58.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167596096-c7a30537-8074-4ade-be53-a4efdc7f3ba0.png)
+
+OBSERVATIONS: As the q is always one in this synthesis, there is no standard cell in the netlist. 
+
+
+DFF_CONST5.V SIMULATION, OPTIMIZATION AND SYNTHESIS: 
+
+Command: iverilog dff_const5.v tb_dff_const5.v 
+
+Command: ./.aout 
+
+Command:  gtkwave tb_dff_const5.vcd 
+
+![image](https://user-images.githubusercontent.com/77483516/167596352-22a48a45-bfea-44be-95d2-9f5063ae98dc.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167596396-d76a0c73-08ac-4a93-98b6-13e03e171030.png)
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog dff_const5.v 
+
+Command: synth –top dff_const5 
+
+Command: dfflibmap –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: show 
+
+![image](https://user-images.githubusercontent.com/77483516/167596600-25176b1c-2fd6-44fb-bb05-c6497fc730cc.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167596647-84cec405-0267-47d5-93ab-b50075a5cd5f.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167596700-eb7a3c98-5bf1-4fc8-8cbd-87aad8ba9b0f.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167596737-6389d7ba-a998-4c25-850f-a55f221939f3.png)
+
+OBSERVATIONS: There is no optimization in this file synthesis. 
+
+
+**SKY130RTL D3SK4 L1 Seq optimisation unused outputs part1:** 
+
+COUNTER_OPT.V SYNTHESIS: 
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog counter_opt.v 
+
+Command: synth –top counter_opt 
+
+Command: dfflibmap –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: show 
+
+![image](https://user-images.githubusercontent.com/77483516/167596924-34a52c7b-e69a-4a7b-9e90-e1d08953191a.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167596980-f82ba880-b378-4da1-8bd2-73b7ae957696.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167597108-28b83f0c-581b-4ef5-b465-a3fb54135985.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167597147-8b654298-0708-4b23-8c69-ec377fd55651.png)
+
+
+OBSERVATIONS: 
+The synthesis shows that q is connected to D through an inverter. So, for every posedge, they q will change. The synthesizer will ignore the counting of the remaining two bits.
+
+**SKY130RTL D3SK4 L2 Seq optimisation unused outputs part2:** 
+
+COUNTER_OPT2.V SYNTHESIS: 
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog counter_opt2.v 
+
+Command: synth –top counter_opt2
+
+Command: dfflibmap –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: show 
+
+![image](https://user-images.githubusercontent.com/77483516/167597397-fcf50cee-40b3-46bc-910a-9c4c05f456d1.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167597438-2287dbb0-8c85-4e6d-9744-fb3b33d20660.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167597474-0e210968-16ad-43a3-8953-49be37ec9967.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167597528-f598a59b-0c64-4297-bcff-859a8f5bcbaf.png)
+
+OBSERVATIONS: There is no optimization in this synthesis. 
+
+
+COUNTER_OPT3.V SYNTHESIS FOR ASSESMENT: 
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog counter_opt3.v 
+
+Command: synth –top counter_opt 
+
+Command: dfflibmap –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: show 
+
+![image](https://user-images.githubusercontent.com/77483516/167597745-4c2a1a67-08e1-4d20-ac9d-97d1289a4045.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167597826-b489bb67-4adf-421f-88a3-719117aa4667.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167597897-ca091420-c08a-4fe6-abc6-18bf8dcfb4f0.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167597953-3279ea05-25f4-4511-896d-8133e5d593e2.png)
+
+
+
