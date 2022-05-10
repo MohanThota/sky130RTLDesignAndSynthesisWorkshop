@@ -981,3 +981,140 @@ Command: show
 
 
 
+
+
+**DAY 4:** 
+
+**SKY130RTL D4SK2 L1 Lab GLS Synth Sim Mismatch part1:** 
+
+TERENARY_OPERATOR GLS : 
+
+Command: iverilog ternary_operator_mux.v tb_ternary_operator_mux.v 
+
+Command: ./a.out 
+
+Command: gtkwave tb_ternary_operator_mux.vcd 
+
+![image](https://user-images.githubusercontent.com/77483516/167598517-1256ef57-379c-47da-b71a-cdfcd5f40eb4.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167598604-a1f5a630-f35f-42f0-9aec-beccf25a8daa.png)
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog ternary_operator_mux.v 
+
+Command: synth –top ternary_operator_mux 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: show 
+
+Command: write_verilog –noattr ternary_operator_mux_net.v 
+
+![image](https://user-images.githubusercontent.com/77483516/167598744-ae87940a-2c21-4816-8e72-4f9e9095f4a6.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167598782-f6984d48-caca-4a7d-b9fc-c6de85ff2f2c.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167598833-02b390d0-639d-4ece-9fa5-f78850bbb2ce.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167598875-f3d9d056-27a7-4a8f-8753-700a65c5e89e.png)
+
+Command: iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v ternary_operator_mux_net.v tb_ternary_operator_mux.v 
+
+Command: ./a.out 
+
+Command: gtkwave tb_ternary_operator_mux.v 
+
+![image](https://user-images.githubusercontent.com/77483516/167598998-38909cec-ba89-4749-9f28-f7132c28b6c2.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167599041-bf20a9a6-a6be-4d29-a2d7-78460267f5b0.png)
+
+
+**SKY130RTL D4SK2 L2 Lab GLS Synth Sim Mismatch part2:** 
+
+BAD_MUX.V SIMULATION: 
+
+Command: iverilog bad_mux.v tb_bad_mux.v 
+
+Command: ./a.out 
+
+Command: gtkwave tb_bad_mux.vcd
+
+![image](https://user-images.githubusercontent.com/77483516/167599359-40482076-a2b4-427f-b0a2-da48108fac02.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167599425-2106ff93-133e-49e7-a3ec-9dde04f1957c.png)
+
+OBSERVATIONS: Clearly, the waveform shows that the verilog file is not working as a multiplexer. 
+
+BAD_MUX.V Synthesis: 
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog bad_mux.v 
+
+Command: synth –top bad_mux 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: write_verilog –noattr bad_mux_net.v
+
+![image](https://user-images.githubusercontent.com/77483516/167599643-44ea4bee-f2fb-4380-8226-7e5aae7f322a.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167599737-e33f73c1-4ea2-4852-b877-4df6fb14dbd5.png)
+
+Command: iverilog ../my_lib/verilog_module/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v bad_mux.net.v tb_bad_mux.v 
+
+Command: ./a.out 
+
+Command: gtkwave tb_bad_mux.vcd
+
+![image](https://user-images.githubusercontent.com/77483516/167599861-3d0dfacb-7d6c-4b0a-8981-5be21604be54.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167599913-26148b6b-b1f7-4eae-97a5-9ff435b80819.png)
+
+OBSERVATION: THE ABOVE WAVEFORM CLEARLY INDICATES SIMULATION – SYNTHESIS MISMATCH CAUSED BY MISSING SENSITIVITY LIST. 
+
+
+
+**SKY130RTL D4SK3 L1 Lab Synth sim mismatch blocking statement part1:** 
+
+BLOCKING CAVEAT.V SIMULATION 
+
+Command: iverilog blocking_caveat.v tb_blocking_caveat.v 
+
+Command: ./a.out 
+
+Command: gtkwave tb_blocking_caveat.vcd 
+
+![image](https://user-images.githubusercontent.com/77483516/167600093-71e1242f-d385-4dfe-889f-cbfacefb0454.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167600133-1db419f6-88df-401d-8c59-9e77922118a1.png)
+
+OBSERVATIONS: Clearly, the output of the aORb is taking previous values to generate d.  
+
+
+
+
+**SKY130RTL D4SK3 L1 Lab Synth sim mismatch blocking statement part2: **
+
+BLOCKING CAVEAT.V SYNTHESIS: 
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog blocking_caveat.v 
+
+Command: synth –top blocking_caveat 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: write_verilog –noattr bad_mux_net.v 
+
+![image](https://user-images.githubusercontent.com/77483516/167600289-7e33abcb-826d-40d5-912c-bc69add5f832.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167600357-16f69b43-f378-4078-8125-c7beb9e14c66.png)
