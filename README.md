@@ -1118,3 +1118,522 @@ Command: write_verilog –noattr bad_mux_net.v
 ![image](https://user-images.githubusercontent.com/77483516/167600289-7e33abcb-826d-40d5-912c-bc69add5f832.png)
 
 ![image](https://user-images.githubusercontent.com/77483516/167600357-16f69b43-f378-4078-8125-c7beb9e14c66.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167602549-eeff4cda-9bab-4099-bd4e-f19bb83219fb.png)
+
+Command: iverilog ../my_lib/verilog_module/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v blocking_caveat_net.v tb_blocking_caveat.v 
+
+Command: ./a.out 
+
+Command: gtkwave tb_blocking_caveat.vcd 
+
+![image](https://user-images.githubusercontent.com/77483516/167602687-bc7c78c9-eb4c-472d-b7fb-f1cb9cd18b95.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167602734-bc9b74eb-c5e9-4f6a-9f55-41fa2e939adc.png)
+
+OBSERVATION: Clearly, the waveform after synthesis indicates the simulation-synthesis mismatch caused by blocking-caveat. 
+
+
+
+**DAY 5:** 
+
+**SKY130RTL D5SK2 L1 Lab Incomplete IF part1:** 
+
+INCOMPLETE_IF SIMULATION: 
+
+Command: iverilog incomp_if.v tb_incomp_if.v 
+
+Command: ./a.out 
+
+Command: gtkwave tb_incomp_if.vcd 
+
+![image](https://user-images.githubusercontent.com/77483516/167603006-6ec4b420-7f9e-429a-963b-f740215425be.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167603084-d4d1f67c-e61d-41b3-a8b9-d00354e337b4.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167603128-a3b17bd3-cc6e-40d3-bb6a-d303bf365409.png)
+
+OBSERVATIONS:  
+
+1)Whenever i0 is high, the y is following i1. 
+
+2)Whenever i0 is low, the output y is latching to its previous value as shown in above two images. 
+
+3)This behaviour is due to inferred latch.   
+
+ 
+INCOMP_IF SYNTHESIS: 
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog incomp_if.v 
+
+Command: synth –top incomp_if 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: show 
+
+![image](https://user-images.githubusercontent.com/77483516/167603294-87caa2f6-717c-4fcf-962c-1a84005d0a9b.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167603349-440bd917-b7bb-4bdc-8c2a-6be85757be81.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167603429-912724bb-150b-4c1f-9c55-53c49d431a34.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167603488-442facbf-36ae-44d0-87b8-deb0b603fa37.png)
+
+OBSERVATIONS: Both the simulation and synthesis are inferring a latch, when we designed a multiplexer.
+
+
+ 
+
+**SKY130RTL D5SK2 L2 Lab Incomplete IF part2:** 
+
+INCOMPLETE_IF SIMULATION2: 
+
+Command: iverilog incomp_if2.v tb_incomp_if2.v 
+
+Command: ./a.out 
+
+Command: gtkwave tb_incomp_if2.vcd 
+
+![image](https://user-images.githubusercontent.com/77483516/167603669-409786c1-9e5c-4800-9182-50340e81e3c5.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167603735-cf2a5506-aba4-4c45-82e2-4bc2854cb61e.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167603900-427bafff-486d-4c01-a06a-545a145b1071.png)
+
+OBSERVATIONS:  
+
+1) When i0 is high, the output y is following i1. 
+
+2)When i2 is high and i1 is low, the output is following i2. 
+
+3)When both i2 and i0 are low, the output is latching to y. 
+
+
+
+INCOMP_IF2 SYNTHESIS: 
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog incomp_if2.v 
+
+Command: synth –top incomp_if2 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: show 
+
+![image](https://user-images.githubusercontent.com/77483516/167604243-67e1958f-57ff-43aa-8e58-b672abec2ecd.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167604294-8ead8738-23af-476c-a760-d24082d5693f.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167604370-2993b630-9c57-4928-8883-1a2f3daf7d7d.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167604410-0d0828a9-879e-4078-bcc6-7770deee8d28.png)
+
+OBSERVATIONS:  
+
+1)Clearly, we can see the inferred latch on dot viewer. 
+
+2) The D_latch has active high enable. So, when i0 and i1 are low, the output of the nor gate becomes high. Then the latch becomes active.  
+
+
+**SKY130RTL D5SK3 L1 Lab incomplete overlapping Case part1:** 
+
+INCOMP_CASE SIMUALTION: 
+
+Command: iverilog incomp_case.v tb_incomp_case.v 
+
+Command: ./a.out 
+
+Command: gtkwave tb_incomp_case.vcd 
+
+![image](https://user-images.githubusercontent.com/77483516/167604608-bac9bb9c-a731-451f-994d-eb09bf8bdb0c.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167604688-4818512b-eadb-41db-8021-148eee2c31c3.png)
+
+ 
+
+OBSERVATIONS:  
+
+The output y is i0 when select is 00. When the select is 01, the output y is i1. 
+
+When the select bit [1] is high, the circuit latches to y value. In this y is zero. 
+
+
+INCOMP_CASE SYNTHESIS: 
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog incomp_case.v 
+
+Command: synth –top incomp_case 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: show 
+
+![image](https://user-images.githubusercontent.com/77483516/167604870-9e705cdf-1898-456b-ae87-edd5f252392c.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167604919-338b933d-3585-4e25-ba89-e76e8ec1c5aa.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167605056-013bf2e1-45fe-439e-888a-d350e6612e06.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167605110-5a8b3906-f11d-4a54-ac1d-b4ca97d1ba07.png)
+
+OBSERVATIONS:  
+
+1)The dot viewer is showing the latch with enable tied to select [1]. 
+
+2)The remaining part is the mux logic. 
+
+
+
+**SKY130RTL D5SK3 L2 Lab incomplete overlapping Case part2:** 
+
+COMP_CASE SIMUALTION: 
+
+Command: iverilog comp_case.v tb_comp_case.v 
+
+Command: ./a.out 
+
+Command: gtkwave tb_comp_case.vcd 
+
+![image](https://user-images.githubusercontent.com/77483516/167605340-f40c8738-8eb5-44e6-b1ba-370e19c7aa98.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167605442-9a9bab0e-6a37-49ca-b5a8-b97861f16a98.png)
+
+OBSERVATIONS: The output y is following y when select is 10 or 11.
+
+
+
+COMP_CASE SYNTHESIS: 
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog comp_case.v 
+
+Command: synth –top comp_case 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: show 
+
+![image](https://user-images.githubusercontent.com/77483516/167605593-ab04d743-35ec-44cf-8264-44a43b9f1098.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167605638-7fc6b3a6-ba41-4d27-b30a-8bc4aa709ff8.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167605685-da0bf595-ed61-4160-b494-e77a51ca51fd.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167605753-c77d1618-8544-4188-a1eb-9f37942002c5.png)
+
+OBSERVATIONS: Clearly, there is no latch and circuit is working fine in both simulation and synthesis. 
+
+
+**SKY130RTL D5SK3 L3 Lab incomplete overlapping Case part3:** 
+
+PARTIAL_CASE_ASSIGN SIMULATION: 
+
+Command: iverilog partial_case_assign.v tb_partial_case_assign.v 
+
+Command: ./a.out 
+
+Command: gtkwave tb_partial_case_assign.vcd 
+
+![image](https://user-images.githubusercontent.com/77483516/167605947-6ca65c3b-4c7d-4ed7-acca-fb7c2f7f7f7b.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167605993-aa34153c-96f9-4089-abc4-eb6fc4736f9e.png)
+
+OBSERVATION: Clearly, when select is 01, the x is latching to its value. 
+
+
+PARTIAL_CASE_ASSIGN SYNHTESIS: 
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog partial_case_assign.v 
+
+Command: synth –top partial_case_assign 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: show 
+
+![image](https://user-images.githubusercontent.com/77483516/167606161-fb457991-d661-46fe-bd20-529de92ca200.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167606235-92fca118-27f6-438a-91df-41d40c673aca.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167606274-d2d74ff2-507c-49fa-8956-8b046247b7f5.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167606325-1393e2fd-efe4-4ca6-8766-9d6b556c3c6e.png)
+
+OBSERVATIONS: 
+
+1) The dot viewer clearly shows the latch for x and there is no latch for y. 
+
+
+BAD_CASE SIMULATION: 
+
+Command: iverilog bad_case.v tb_bad_case.v 
+
+Command: ./a.out 
+
+Command: gtkwave tb_bad_case.vcd 
+
+![image](https://user-images.githubusercontent.com/77483516/167606462-8d7ad363-46cb-40d7-9c39-9289eb397b9a.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167606504-3b637bcf-9023-4a0b-a617-9ec55ed4362a.png)
+
+OBSERVATION: Clearly, when the select is 11, the output y is becoming 1. 
+
+
+**SKY130RTL D5SK3 L4 Lab incomplete overlapping Case part4:** 
+
+BAD_CASE SYNTHESIS: 
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog bad_case.v 
+
+Command: synth –top bad_case 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: show 
+
+![image](https://user-images.githubusercontent.com/77483516/167606694-2ac12166-1478-42a2-9fc7-4987e4abf07e.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167606836-ef78491b-dde6-4919-aa2e-0a090e54b675.png)
+
+Observation: There are no latches in bad_case. 
+
+![image](https://user-images.githubusercontent.com/77483516/167606961-1487c35b-e058-4a38-ad50-9dab3a6fc206.png)
+
+
+
+BAD_MUX NETLSIT SIMULATION: 
+
+Command: write_verilog –noattr tb_bad_case_net.v 
+
+Command: iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v bad_case_net.v tb_bad_case.v 
+
+Command: ./a.out 
+
+Command: gtkwave tb_bad_case.vcd 
+
+![image](https://user-images.githubusercontent.com/77483516/167607074-7ef70eab-8b02-4c10-93b1-f7922bc69a0e.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167607128-d47c53a6-3d6c-4dda-ac13-30cde11b36f3.png)
+
+OBSERVATION:  
+
+1)The netlist simulations shows that the output y is taking i3, when the select is 11. 
+
+2) This is a simulation-synthesis mismatch. So, we need to avoid overlapping case while VERILOG coding. 
+
+
+
+**SKY130RTL D5SK5 L1 Lab For and For Generate part1:** 
+
+MUX_GENERATE.V SIMULATION: 
+
+Command: iverilog mux_generate.v tb_mux_generate.v 
+
+Command: ./a.out 
+
+Command: gtkwave tb_mux_generate.vcd 
+
+![image](https://user-images.githubusercontent.com/77483516/167607306-950b8411-4a72-4a81-a333-fa8d76b2c15e.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167607337-7e9633f8-7e76-4ec3-a25a-f58bd1654d9a.png)
+
+OBSERVATION: We can see the waveforms of a 4:1 mulitplexer designed using for loop. 
+
+
+
+MUX_GENERATE.V SYNTHESIS: 
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog mux_generate.v 
+
+Command: synth –top mux_generate 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: show 
+
+![image](https://user-images.githubusercontent.com/77483516/167607460-2af659a0-3d9b-479e-a84d-1a700b4cb250.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167607501-d9bc5f4a-c5e6-4394-bd7a-449ebb3e8e29.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167607556-451f2376-a0d9-4731-b160-e8679353fcb5.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167607603-2fdf6e53-87e5-4efe-9c4d-7a6a06c99fa7.png)
+
+OBSERVATION: We can see that the synthesis has a latch. The latch just acts as a buffer. 
+
+
+
+**SKY130RTL D5SK5 L2 Lab For and For Generate part2: **
+
+DEMUX_CASE SIMULATION: 
+
+Command: iverilog demux_case.v tb_demux_case.v 
+
+Command: ./a.out 
+
+Command: gtkwave tb_demux_case.vcd 
+
+![image](https://user-images.githubusercontent.com/77483516/167607775-61fb4a08-f064-40c3-b480-b3f04d2adb7c.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167607823-7c41189c-bb4c-46e1-88da-8f40cf9ba647.png)
+
+OBSERVATION: We can see that output is being selected based on the select line. 
+
+
+DEMUX_CASE SYNTHESIS: 
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog demux_case.v 
+
+Command: synth –top demux_case 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: show 
+
+![image](https://user-images.githubusercontent.com/77483516/167607949-ced7f616-dad4-4223-a3af-fc4fc2ba9420.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167608026-e85af2f0-0eb8-4eef-99ac-e3161fe81194.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167608095-3623002f-286e-4eca-945e-8e3c727d4c22.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167608182-b860f09a-a23d-4fea-ac2b-b202367710a8.png)
+
+
+
+DEMUX_GENERATE.V SIMULATION: 
+
+Command: iverilog demux_generate.v tb_demux_generate.v 
+
+Command: ./a.out 
+
+Command: gtkwave tb_demux_generate.vcd
+
+![image](https://user-images.githubusercontent.com/77483516/167608298-9bc7ed7a-8697-438d-b960-06bd157a20d3.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167608377-c686d1a9-b5d9-48dd-9ed1-c6725c47139e.png)
+
+
+
+DEMUX_GENERATE SYNTHESIS: 
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog demux_generate.v 
+
+Command: synth –top demux_generate 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: show 
+
+![image](https://user-images.githubusercontent.com/77483516/167608450-118fbe43-4a10-4266-a5f0-5a0583e5b184.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167608500-31a0e9f2-c40f-418b-a6ec-dc5e207639df.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167608647-da59f7ea-38c3-4d85-a1c5-63a854444e34.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167608724-b00b785f-6846-41a6-a678-1664f02b916d.png)
+
+OBSERVATION: In this lab, both demux_case.v and demux_generate.v has similar synthesis. However, the demux_generate.v can be scalable. 
+
+
+**SKY130RTL D5SK5 L3 Lab For and For Generate part3: **
+
+Command: gvim rca.v -o fa.v 
+
+![image](https://user-images.githubusercontent.com/77483516/167608890-06e33bf9-4f50-489d-85ae-821ae7602be4.png)
+
+
+**SKY130RTL D5SK5 L4 Lab For and For Generate part4: **
+
+RCA SIMULATION: 
+
+Command: iverilog fa.v rca.v tb_rca.v 
+
+This command tells the simulator that fa.v is separate module but is called in rca.v. 
+
+Command: ./a.out 
+
+Command: gtkwave tb_rca.vcd
+
+![image](https://user-images.githubusercontent.com/77483516/167609183-7bae0b9d-d130-44d7-843d-1143b9875df8.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167609235-2c92e831-e0e1-4cd1-b740-99fc3b5db493.png)
+
+
+RCS SYNHTESIS: 
+
+Command: yosys 
+
+Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: read_verilog fa.v 
+
+Command: read_verilog rca.v 
+
+Command: synth –top rca 
+
+Command: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+Command: show rca 
+ 
+![image](https://user-images.githubusercontent.com/77483516/167609518-5f12f071-52b5-4708-9655-143680f5e9f2.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167609718-4df9265a-fb49-4736-ac68-fb0284c12356.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167609786-a9fe8018-fc92-414a-a07c-51a819ab8422.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167609916-5fcd524c-4a40-4ac9-af84-ed065f9ca7f3.png)
+
+OBSERVATION: 8 FA MODULES ARE INSTANTIATED. 
+
+
+RCA GLS SYNHTESIS: 
+
+Command: write_verilog –noattr tb_rca_net.v 
+
+![image](https://user-images.githubusercontent.com/77483516/167610025-8db4401a-034b-4304-b706-1c527920693a.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167610077-20f49cbb-b002-4957-b70d-a2ab0dc7b34d.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167610143-0f882c0e-6c3b-43fb-9fa8-7de6bd470a9b.png)
+
+![image](https://user-images.githubusercontent.com/77483516/167610258-917c312b-e1fc-42aa-8027-a7f4d88154d5.png)
+
+OBSERVATIONS: There is no mismatch between simulation and synthesis. 
+
+
