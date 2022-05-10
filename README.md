@@ -18,6 +18,7 @@ Iverilog based simulator flow:
 
 iverilog simulator takes the design and corresponding test bench of the design and generates the vcd( Value Change Dump format) file. The vcd file can be viewed using gtkwave waveform viewer. 
  ![iverilog simulation flow](https://user-images.githubusercontent.com/77483516/167551131-933b6e74-853b-4ee7-bc6f-bbfbad235220.PNG)
+ 
 **SKY130RTL D1SK2 - Labs using iverilog and gtkwave**
 SKY130RTL D1SK2 L1 Lab1 introduction to lab: 
 
@@ -45,7 +46,7 @@ In this module, we have seen how to open verilog file using gvim command.
 
 **SKY130RTL D1SK3 - Introduction to Yosys and Logic synthesis** 
 
-SKY130RTL D1SK3 L1 Introduction to yosys: 
+**SKY130RTL D1SK3 L1 Introduction to yosys: **
 
  Synthesizer: 
 
@@ -79,7 +80,7 @@ For example, consider this situation:
 In this situation the clock should accommodate the propagation delay, combinational logic delay and setup time of the B D flipflop. As the time is inversely proportional to frequency the smaller the time the faster the frequency. If we have faster cells, the time taken for the operation will be less. Less time implies maximum frequency. 
 
 
-SKY130RTL D1SK3 L3 introduction to logic synthesis part2: 
+**SKY130RTL D1SK3 L3 introduction to logic synthesis part2: **
 
  Why do we need slower cells? 
 
@@ -119,11 +120,13 @@ Command: show
 Displays the graphical version of the netlist in dot viewer. 
 ![image](https://user-images.githubusercontent.com/77483516/167561763-a0e2086b-d868-4ba7-bed7-cf346cb25d18.png)
 
+
 **SKY130RTL D1SK4 L2 Lab3 Yosys 1 good mux Part2:** 
 
   In older version of yosys the above synthesis will generate two inverse gates and Nand for the function of and. But in the latest version directly a mux is used as standard cell. 
   ![image](https://user-images.githubusercontent.com/77483516/167561946-6bc578b2-b876-48b9-a452-b60fb75190d6.png)
-  
+
+
 **SKY130RTL D1SK4 L3 Lab3 Yosys 1 good mux Part3:** 
 Command: write_verilog good_mux_netlist.v 
 ![image](https://user-images.githubusercontent.com/77483516/167562080-7ac91934-8caf-4c7d-aea4-7fd6733f1e98.png)
@@ -212,6 +215,8 @@ Command: show multiple_modules
 
 ![image](https://user-images.githubusercontent.com/77483516/167564507-aa55b9e1-13af-43d5-93a2-4b022808b125.png)
 
+
+
 **SYNTHESIS OF INDIVIDUAL MODULES:** 
 
 Command: yosys 
@@ -290,6 +295,8 @@ OBSERVATIONS: The q will change only with the posedge of the clock even when the
 ![image](https://user-images.githubusercontent.com/77483516/167565701-22875f3a-a76a-45d3-98bc-c9a6f72a84ca.png)
 
 ![image](https://user-images.githubusercontent.com/77483516/167565748-ea202f9b-65a7-4313-8460-d4669e9cce55.png)
+
+
 
 **SKY130RTL D2SK3 L4 Lab flop synthesis simulations part2:**
 
@@ -468,7 +475,7 @@ Command: !gvim mult_8_netlsit.v
 
 DAY 3:   
 
-SKY130RTL D3SK2 L1 Lab06 Combinational Logic Optimisations part1: 
+**SKY130RTL D3SK2 L1 Lab06 Combinational Logic Optimisations part1:** 
 
 OPT_CHECK OPTIMISZATION AND SYNTHESIS: 
 
