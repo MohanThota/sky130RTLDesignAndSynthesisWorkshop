@@ -31,6 +31,8 @@ Inside the sky130 folder we have my lib which contains the standard cell library
  
 All the required Verilog files and Test benches are present in Verilog files folder. 
  ![verilog files folder](https://user-images.githubusercontent.com/77483516/167554592-3855aa1c-c4a1-4f9f-abc8-f740c611cf41.PNG)
+ 
+ 
 **SKY130RTL D1SK2 L2 Lab2 Introduction iverilog gtkwave part1:** 
  
 In this lab, we learnt how to simulate Verilog files using iverilog. After executing the a.out file we get the dumpfile, which can be used using GTKWAVE waveform user. 
@@ -145,9 +147,9 @@ To make and display the netlsit readable.
 
 
 
- **DAY 2:**     
+**DAY 2:**     
 
- **SKY130RTL D2SK1 L1 Lab4 Introduction to dot :**
+**SKY130RTL D2SK1 L1 Lab4 Introduction to dot :**
  
  Command: gvim ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
  
@@ -784,6 +786,8 @@ OBSERVATION: ABC command ‘s result is indicating that there is no standard cel
 
 ![image](https://user-images.githubusercontent.com/77483516/167594888-dabed410-df63-4fe3-9d00-2a7188797f91.png)
 
+
+
 **SKY130RTL D3SK3 L2 Lab07 Sequential Logic Optimisations part3:** 
 
 DFF_CONST3.V SIMULATION, OPTIMIZATION AND SYNTHESIS: 
@@ -932,6 +936,7 @@ Command: show
 
 OBSERVATIONS: 
 The synthesis shows that q is connected to D through an inverter. So, for every posedge, they q will change. The synthesizer will ignore the counting of the remaining two bits.
+
 
 **SKY130RTL D3SK4 L2 Seq optimisation unused outputs part2:** 
 
