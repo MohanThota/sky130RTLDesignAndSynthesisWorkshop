@@ -1628,7 +1628,11 @@ Command: write_verilog –noattr tb_rca_net.v
 
 ![image](https://user-images.githubusercontent.com/77483516/167610025-8db4401a-034b-4304-b706-1c527920693a.png)
 
-![image](https://user-images.githubusercontent.com/77483516/167610077-20f49cbb-b002-4957-b70d-a2ab0dc7b34d.png)
+Command: iverilog ../my_lib/verilog_module/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v tb_rca_net.v tb_rca.v 
+
+Command: ./a.out 
+
+Command: gtkwave tb_rca.vcd 
 
 ![image](https://user-images.githubusercontent.com/77483516/167610143-0f882c0e-6c3b-43fb-9fa8-7de6bd470a9b.png)
 
