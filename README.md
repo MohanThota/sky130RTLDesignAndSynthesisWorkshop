@@ -1,17 +1,25 @@
 ![image](https://user-images.githubusercontent.com/77483516/167080105-2a7f5195-23eb-4444-a444-74f917136e4e.png)
 # sky130RTLDesignAndSynthesisWorkshop
+## Index
+### Day 1 - Introduction to Verilog RTL design and Synthesis
+### DAY 2: - Timing libs, hierarchial vs flat coding styles and effictive flop coding styles
+### DAY 3: Combinational and Seqeuntial optimizations
+### DAY 4: GLS, blocking vs non-blocking and Synhtesis and Simulation mismatch
+### DAY 5: If, case, for and for generate
+
+
 
 ## Day 1 - Introduction to Verilog RTL design and Synthesis
 
-**SKY130RTL D1SK1 L1 Introduction to iverilog design test bench** 
+### SKY130RTL D1SK1 L1 Introduction to iverilog design test bench
 
 In the first lecture of the course, we learnt about the definitions of the RTL Design, Simulator and Test Bench. The simulator we are going to use in this workshop is iverilog. After the definitions of the terms mentioned above, we learnt the workings of Simulator and Test Bench. 
 
-Simulator Working: 
+**Simulator Working:** 
 
 Simulator looks for the changes in the input and for every change in the input, we observe changes in the output.  
 
-Test Bench: 
+**Test Bench:** 
 
 Test Bench generates the stimulus for the design and observes the output. 
 ![TESTBENCH](https://user-images.githubusercontent.com/77483516/167550635-d5befd27-03e4-4af8-9bad-02c12f0ba7bb.PNG)
@@ -20,8 +28,8 @@ Iverilog based simulator flow:
 iverilog simulator takes the design and corresponding test bench of the design and generates the vcd( Value Change Dump format) file. The vcd file can be viewed using gtkwave waveform viewer. 
  ![iverilog simulation flow](https://user-images.githubusercontent.com/77483516/167551131-933b6e74-853b-4ee7-bc6f-bbfbad235220.PNG)
  
-**SKY130RTL D1SK2 - Labs using iverilog and gtkwave**
-SKY130RTL D1SK2 L1 Lab1 introduction to lab: 
+### SKY130RTL D1SK2 - Labs using iverilog and gtkwave
+### SKY130RTL D1SK2 L1 Lab1 introduction to lab: 
 
 In this session we git cloned the required modules from GitHub to VLSI folder
 ![gitclone lab](https://user-images.githubusercontent.com/77483516/167553727-3170eb1c-e844-4257-8573-2e39643ab9c2.PNG)
@@ -34,12 +42,12 @@ All the required Verilog files and Test benches are present in Verilog files fol
  ![verilog files folder](https://user-images.githubusercontent.com/77483516/167554592-3855aa1c-c4a1-4f9f-abc8-f740c611cf41.PNG)
  
  
-**SKY130RTL D1SK2 L2 Lab2 Introduction iverilog gtkwave part1:** 
+### SKY130RTL D1SK2 L2 Lab2 Introduction iverilog gtkwave part1:
  
 In this lab, we learnt how to simulate Verilog files using iverilog. After executing the a.out file we get the dumpfile, which can be used using GTKWAVE waveform user. 
      ![iverilog simulation](https://user-images.githubusercontent.com/77483516/167556666-6d62bae8-e3fe-4f5b-bd7a-f4a5a9d8e8a8.PNG)
      ![gtkwave1](https://user-images.githubusercontent.com/77483516/167556716-918a5a36-b2ab-4a3c-b01b-30c5fc88cb2e.PNG)
-**SKY130RTL D1SK2 L3 Lab2 Introduction iverilog gtkwave part2: **
+### SKY130RTL D1SK2 L3 Lab2 Introduction iverilog gtkwave part2: 
 
 In this module, we have seen how to open verilog file using gvim command. 
 ![verilog files gvim](https://user-images.githubusercontent.com/77483516/167556833-11ab899a-ef68-4bd5-87a5-f8e57928584c.PNG)
@@ -47,11 +55,11 @@ In this module, we have seen how to open verilog file using gvim command.
          
  
 
-**SKY130RTL D1SK3 - Introduction to Yosys and Logic synthesis** 
+### SKY130RTL D1SK3 - Introduction to Yosys and Logic synthesis
 
-**SKY130RTL D1SK3 L1 Introduction to yosys: **
+### SKY130RTL D1SK3 L1 Introduction to yosys: 
 
- Synthesizer: 
+ **Synthesizer:** 
 
 It is a tool used for converting the RTL into netlist. In this workshop we are going to use yosys synthesizer. 
 
@@ -59,17 +67,19 @@ It is a tool used for converting the RTL into netlist. In this workshop we are g
 Yosys setup: 
 ![yosys setup](https://user-images.githubusercontent.com/77483516/167556991-4c4fbdb0-22bf-48ab-abfe-71c8d3817cbc.PNG)
 
-Verification of the synthesis: 
+**Verification of the synthesis:** 
 
 To verify the generated netlist, we are going to use the same test bench and iverilog simulator. 
  ![verify synthesis](https://user-images.githubusercontent.com/77483516/167557047-969b689f-9fbd-4a22-90e6-f5c8732af634.PNG)
-SKY130RTL D1SK3 L2 introduction to logic synthesis part1 
+ 
+### SKY130RTL D1SK3 L2 introduction to logic synthesis part1 :
 
-RTL Design: 
-SYNTHESIS: 
+**RTL Design:**
+
+**SYNTHESIS:**
  ![image](https://user-images.githubusercontent.com/77483516/167559189-67017034-2ea8-4fb8-8acf-d6e77b68d2e7.png)
 
-LIBRARY:  
+**LIBRARY:**
 
 .lib is a collection of logic modules, which include basic logic gates and different flavours of same gates. 
  ![image](https://user-images.githubusercontent.com/77483516/167559302-3838c8ea-1984-4e2d-bf87-cc8b27e54c9f.png)
@@ -83,26 +93,26 @@ For example, consider this situation:
 In this situation the clock should accommodate the propagation delay, combinational logic delay and setup time of the B D flipflop. As the time is inversely proportional to frequency the smaller the time the faster the frequency. If we have faster cells, the time taken for the operation will be less. Less time implies maximum frequency. 
 
 
-**SKY130RTL D1SK3 L3 introduction to logic synthesis part2: **
+**SKY130RTL D1SK3 L3 introduction to logic synthesis part2:**
 
  Why do we need slower cells? 
 
    In order to have proper hold time for the newly generated values in the design. If we go too fast, the logic may miss few values and we won’t get the intended results. 
 
-FASTER CELLS VS SLOWER CELLS: 
+**FASTER CELLS VS SLOWER CELLS:**
 ![image](https://user-images.githubusercontent.com/77483516/167560168-2198d9bb-0678-4768-9698-b54487368001.png)
 
 
-SYNTHESIS( ILLUSTRATION ): 
+**SYNTHESIS( ILLUSTRATION ):**
 After syntactical check, the synthesizer will map different types of statements in the code to standard cells as shown below. 
 ![image](https://user-images.githubusercontent.com/77483516/167560303-733bb692-a01c-4a61-8207-092e616e666c.png)
 
-**SKY130RTL D1SK4 L1 Lab3 Yosys 1 good mux Part1: **
-yosys: 
+### SKY130RTL D1SK4 L1 Lab3 Yosys 1 good mux Part1: 
+**yosys:** 
 yosys can be invoked by using the command yosys in the Verilog files module. 
 ![image](https://user-images.githubusercontent.com/77483516/167560618-9bb740c6-ddbe-4a74-8dcb-82f2cf68409c.png)
 
-Reading the liberty: 
+**Reading the liberty:** 
 
 Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
 ![image](https://user-images.githubusercontent.com/77483516/167561081-282b3423-65b1-4813-8770-2cbc304a8b4c.png)
@@ -124,13 +134,13 @@ Displays the graphical version of the netlist in dot viewer.
 ![image](https://user-images.githubusercontent.com/77483516/167561763-a0e2086b-d868-4ba7-bed7-cf346cb25d18.png)
 
 
-**SKY130RTL D1SK4 L2 Lab3 Yosys 1 good mux Part2:** 
+### SKY130RTL D1SK4 L2 Lab3 Yosys 1 good mux Part2:
 
   In older version of yosys the above synthesis will generate two inverse gates and Nand for the function of and. But in the latest version directly a mux is used as standard cell. 
   ![image](https://user-images.githubusercontent.com/77483516/167561946-6bc578b2-b876-48b9-a452-b60fb75190d6.png)
 
 
-**SKY130RTL D1SK4 L3 Lab3 Yosys 1 good mux Part3:** 
+### SKY130RTL D1SK4 L3 Lab3 Yosys 1 good mux Part3:
 Command: write_verilog good_mux_netlist.v 
 ![image](https://user-images.githubusercontent.com/77483516/167562080-7ac91934-8caf-4c7d-aea4-7fd6733f1e98.png)
 
@@ -150,15 +160,14 @@ To make and display the netlsit readable.
 
 ## DAY 2: - Timing libs, hierarchial vs flat coding styles and effictive flop coding styles  
 
-**SKY130RTL D2SK1 L1 Lab4 Introduction to dot :**
+### SKY130RTL D2SK1 L1 Lab4 Introduction to dot :
  
  Command: gvim ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
  
  ![image](https://user-images.githubusercontent.com/77483516/167562894-a1c07667-a12d-43a3-b33c-45be5171c994.png)
 The various terms of the opened library’s name are tt-> typical process ,025C-> Temperature, 1v80->voltage. 
 
-
-**SKY130RTL D2SK2 L1 Lab05 Hier synthesis flat synthesis part1:** 
+### SKY130RTL D2SK2 L1 Lab05 Hier synthesis flat synthesis part1: 
 
 **HEIRARCHIAL SYNTHESIS OF MULTIPLE_MODULES** 
 
@@ -183,7 +192,7 @@ Commnad: abc –liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 
 Command: show multiple_modules 
 
-HEIRARICHAL SYNTHESIS 
+**HEIRARICHAL SYNTHESIS**
 ![image](https://user-images.githubusercontent.com/77483516/167563549-1a387c85-90b4-48c4-a9c6-eb693ec50f84.png)
 
 Command: write_verilog –noattr multiple_modules_netlsit.v 
@@ -198,7 +207,7 @@ Command: !gvim multiple_modules_netlist.v
 
 ![image](https://user-images.githubusercontent.com/77483516/167563830-682cf134-0d81-4be5-89d2-966f71201084.png)
 
-FLAT SYNTHESIS OF MULTIPLE_MOUDLES: 
+**FLAT SYNTHESIS OF MULTIPLE_MOUDLES:**
 
 Command: flatten 
 
@@ -253,9 +262,9 @@ Command: !gvim sub_module_netlist.v
 ![image](https://user-images.githubusercontent.com/77483516/167565033-7df79c64-0381-408e-bdfd-a357906a84aa.png)
 
 
-**SKY130RTL D2SK3 L3 Lab flop synthesis simulations part1: **
+### SKY130RTL D2SK3 L3 Lab flop synthesis simulations part1: 
 
-DFF_ASYNCRES  IVERILOG SIMULATION 
+**DFF_ASYNCRES  IVERILOG SIMULATION**
 
 Command: iverilog dff_asyncres.v tb_dff_asyncres.v 
 
@@ -271,7 +280,7 @@ OBSERVATIONS: If there is no reset, the state changes only with posedge of clock
 
 Else, the output changes with reset. 
 
-DFF_ASYNC_SET IVERILOG SIMULATION: 
+**DFF_ASYNC_SET IVERILOG SIMULATION:**
 
 Command: iverilog dff_async_set.v tb_dff_async_set.v 
 
@@ -285,7 +294,7 @@ Command: gtkwave tb_dff_async_set.vcd
 
 OBSERVATIONS: The q will be set without waiting for the clock. The q value will wait till the posedge of clock. 
 
-DFF_SYNCRES IVERILOG SIMULATION: 
+**DFF_SYNCRES IVERILOG SIMULATION:**
 
 Command: iverilog dff_syncres.v tb_dff_syncres.v 
 
@@ -301,9 +310,9 @@ OBSERVATIONS: The q will change only with the posedge of the clock even when the
 
 
 
-**SKY130RTL D2SK3 L4 Lab flop synthesis simulations part2:**
+### SKY130RTL D2SK3 L4 Lab flop synthesis simulations part2:
 
-DFF_ASYNCRES SYNTHESIS:
+**DFF_ASYNCRES SYNTHESIS:**
 
 Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 
@@ -332,7 +341,7 @@ Command: show
 
 OBSERVATIONS: The use of inverse gate in the synthesis indicates that the flop, in the library, has active low reset as input. 
 
-DFF_ASYNC_SET SYNTHESIS: 
+**DFF_ASYNC_SET SYNTHESIS:**
 
 Command: read_verilog dff_async_set.v 
 
@@ -353,7 +362,7 @@ Command: show
 ![image](https://user-images.githubusercontent.com/77483516/167566829-f0d0fdee-22ab-462e-9a5a-dfea5370a80a.png)
 
 
-DFF_SYNCRES SYNTHESIS: 
+**DFF_SYNCRES SYNTHESIS:**
 
 Command: read_liberty –lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
 
@@ -375,7 +384,7 @@ Command: show
 
 
 
-**SKY130RTL D2SK3 L5 Interesting optimisations part1:** 
+### SKY130RTL D2SK3 L5 Interesting optimisations part1:
 
 Command: gvim mult_*.v  -o 
 
@@ -396,7 +405,7 @@ OBSERVATIONS:
      The output can be generated by appending the input with itself. 
      
  
-MULT_2 SYNTHESIS: 
+**MULT_2 SYNTHESIS:**
 
 Command: yosys 
 
@@ -438,7 +447,7 @@ Command: !gvim mult_2_netlist.v
 
 
 
-MULT_8 SYNTHESIS: 
+**MULT_8 SYNTHESIS:**
 
 Command: yosys 
 
@@ -475,11 +484,11 @@ Command: !gvim mult_8_netlsit.v
 
 
 
-## DAY 3: Combinational and Sequnetail optimizations
+## DAY 3: Combinational and Seqeuntial optimizations
 
-**SKY130RTL D3SK2 L1 Lab06 Combinational Logic Optimisations part1:** 
+### SKY130RTL D3SK2 L1 Lab06 Combinational Logic Optimisations part1:
 
-OPT_CHECK OPTIMISZATION AND SYNTHESIS: 
+**OPT_CHECK OPTIMISZATION AND SYNTHESIS:**
 
 Command: yosys 
 
@@ -513,7 +522,7 @@ OBSERVATIONS:
 
 
 
-OPT_CHECK2 OPTIMISZATION AND SYNTHESIS: 
+**OPT_CHECK2 OPTIMISZATION AND SYNTHESIS:**
 
 Command: yosys 
 
@@ -544,9 +553,9 @@ OBSERVATIONS:
 2) Instead of generating OR gate from Nand gates, the updated standard cell library had an OR gate.  
 
 
-**SKY130RTL D3SK2 L2 Lab06 Combinational Logic Optimisations part2: **
+### SKY130RTL D3SK2 L2 Lab06 Combinational Logic Optimisations part2: 
 
-OPT_CHECK3 OPTIMIZATION AND  SYNTHESIS : 
+**OPT_CHECK3 OPTIMIZATION AND  SYNTHESIS :**
 
 Command: yosys 
 
@@ -576,7 +585,7 @@ OBSERVATIONS: The two multiplexers in the opt_check3.v are optimised as single 3
 
 ![image](https://user-images.githubusercontent.com/77483516/167590677-a41cd65c-14b1-4f11-8619-0270b9ddb470.png)
 
-OPT_CHECK4.V OPTIMISATION AND SYNTHESIS: 
+**OPT_CHECK4.V OPTIMISATION AND SYNTHESIS:**
 
 Command: yosys 
 
@@ -602,7 +611,7 @@ Command: show
 
 OBSERVATIONS: The opt_check4.v design is simplified as an XNOR gate.
 
-MULTIPLE_MODULE_OPT.V OPTIMIZATION AND SYNTHESIS: 
+**MULTIPLE_MODULE_OPT.V OPTIMIZATION AND SYNTHESIS:**
 
 Command: yosys 
 
@@ -648,7 +657,7 @@ OBSERVATIONS:
 
 2)The U1 module is simplified to a. 
 
-MULTIPLE_MODULE_OPT2.V OPTIMIZATION AND SYNTHESIS: 
+**MULTIPLE_MODULE_OPT2.V OPTIMIZATION AND SYNTHESIS:**
 
 Command: yosys 
 
@@ -696,9 +705,9 @@ OBSERVATIONS:
 
  
 
-**SKY130RTL D3SK3 L1 Lab07 Sequential Logic Optimisations part1:** 
+### SKY130RTL D3SK3 L1 Lab07 Sequential Logic Optimisations part1:
 
-DFF_CONST1 SIMULATION: 
+**DFF_CONST1 SIMULATION:**
 
 Command: iverilog dff_const1.v tb_dff_const1.v 
 
@@ -712,7 +721,7 @@ Command: gtkwave tb_dff_const1.vcd
 
 OBSERVATIONS: The q doesn’t change value when reset is low. Q will change value only with the posedge of the clock. 
 
-DFF_CONST2 SIMULATION: 
+** DFF_CONST2 SIMULATION: **
 
 Command: iverilog dff_const1.v tb_dff_const2.v 
 
@@ -728,7 +737,7 @@ OBSERVATIONS: The q value is always one.
 
  
 
-DFF_CONST1.V SYNTHESIS: 
+**DFF_CONST1.V SYNTHESIS:**
 
 Command: yosys 
 
@@ -758,9 +767,9 @@ OBSERVATIONS: As stated before, the D_flip_flop in the netlist is active_low. So
 
 
 
-**SKY130RTL D3SK3 L2 Lab07 Sequential Logic Optimisations part2:** 
+### SKY130RTL D3SK3 L2 Lab07 Sequential Logic Optimisations part2:
 
-DFF_CONST2.V SYNTHESIS 
+**DFF_CONST2.V SYNTHESIS**
 
 Command: yosys 
 
@@ -788,9 +797,9 @@ OBSERVATION: ABC command ‘s result is indicating that there is no standard cel
 
 
 
-**SKY130RTL D3SK3 L2 Lab07 Sequential Logic Optimisations part3:** 
+### SKY130RTL D3SK3 L2 Lab07 Sequential Logic Optimisations part3:
 
-DFF_CONST3.V SIMULATION, OPTIMIZATION AND SYNTHESIS: 
+**DFF_CONST3.V SIMULATION, OPTIMIZATION AND SYNTHESIS:**
 
 Command: iverilog dff_const3.v tb_dff_const3.v 
 
@@ -831,7 +840,7 @@ OBSERVATIONS:
 Because q cannot be optimised, the circuit remains unoptimized. 
 
 
-DFF_CONST4.V SIMULATION, OPTIMIZATION AND SYNTHESIS: 
+**DFF_CONST4.V SIMULATION, OPTIMIZATION AND SYNTHESIS:**
 
 Command: iverilog dff_const4.v tb_dff_const4.v 
 
@@ -870,7 +879,7 @@ Command: show
 OBSERVATIONS: As the q is always one in this synthesis, there is no standard cell in the netlist. 
 
 
-DFF_CONST5.V SIMULATION, OPTIMIZATION AND SYNTHESIS: 
+**DFF_CONST5.V SIMULATION, OPTIMIZATION AND SYNTHESIS:**
 
 Command: iverilog dff_const5.v tb_dff_const5.v 
 
@@ -907,9 +916,9 @@ Command: show
 OBSERVATIONS: There is no optimization in this file synthesis. 
 
 
-**SKY130RTL D3SK4 L1 Seq optimisation unused outputs part1:** 
+### SKY130RTL D3SK4 L1 Seq optimisation unused outputs part1:*
 
-COUNTER_OPT.V SYNTHESIS: 
+**COUNTER_OPT.V SYNTHESIS:**
 
 Command: yosys 
 
@@ -938,9 +947,9 @@ OBSERVATIONS:
 The synthesis shows that q is connected to D through an inverter. So, for every posedge, they q will change. The synthesizer will ignore the counting of the remaining two bits.
 
 
-**SKY130RTL D3SK4 L2 Seq optimisation unused outputs part2:** 
+### SKY130RTL D3SK4 L2 Seq optimisation unused outputs part2:
 
-COUNTER_OPT2.V SYNTHESIS: 
+**COUNTER_OPT2.V SYNTHESIS:**
 
 Command: yosys 
 
@@ -967,7 +976,7 @@ Command: show
 OBSERVATIONS: There is no optimization in this synthesis. 
 
 
-COUNTER_OPT3.V SYNTHESIS FOR ASSESMENT: 
+**COUNTER_OPT3.V SYNTHESIS FOR ASSESMENT:**
 
 Command: yosys 
 
@@ -997,9 +1006,9 @@ Command: show
 
 ## DAY 4: GLS, blocking vs non-blocking and Synhtesis and Simulation mismatch
 
-**SKY130RTL D4SK2 L1 Lab GLS Synth Sim Mismatch part1:** 
+### SKY130RTL D4SK2 L1 Lab GLS Synth Sim Mismatch part1:
 
-TERENARY_OPERATOR GLS : 
+**TERENARY_OPERATOR GLS :**
 
 Command: iverilog ternary_operator_mux.v tb_ternary_operator_mux.v 
 
@@ -1044,9 +1053,9 @@ Command: gtkwave tb_ternary_operator_mux.v
 ![image](https://user-images.githubusercontent.com/77483516/167599041-bf20a9a6-a6be-4d29-a2d7-78460267f5b0.png)
 
 
-**SKY130RTL D4SK2 L2 Lab GLS Synth Sim Mismatch part2:** 
+### SKY130RTL D4SK2 L2 Lab GLS Synth Sim Mismatch part2:
 
-BAD_MUX.V SIMULATION: 
+**BAD_MUX.V SIMULATION:**
 
 Command: iverilog bad_mux.v tb_bad_mux.v 
 
@@ -1060,7 +1069,7 @@ Command: gtkwave tb_bad_mux.vcd
 
 OBSERVATIONS: Clearly, the waveform shows that the verilog file is not working as a multiplexer. 
 
-BAD_MUX.V Synthesis: 
+**BAD_MUX.V Synthesis:**
 
 Command: yosys 
 
@@ -1092,9 +1101,9 @@ OBSERVATION: THE ABOVE WAVEFORM CLEARLY INDICATES SIMULATION – SYNTHESIS MISMA
 
 
 
-**SKY130RTL D4SK3 L1 Lab Synth sim mismatch blocking statement part1:** 
+### SKY130RTL D4SK3 L1 Lab Synth sim mismatch blocking statement part1:
 
-BLOCKING CAVEAT.V SIMULATION 
+**BLOCKING CAVEAT.V SIMULATIOn** 
 
 Command: iverilog blocking_caveat.v tb_blocking_caveat.v 
 
@@ -1111,9 +1120,9 @@ OBSERVATIONS: Clearly, the output of the aORb is taking previous values to gener
 
 
 
-**SKY130RTL D4SK3 L1 Lab Synth sim mismatch blocking statement part2: **
+### SKY130RTL D4SK3 L1 Lab Synth sim mismatch blocking statement part2: 
 
-BLOCKING CAVEAT.V SYNTHESIS: 
+**BLOCKING CAVEAT.V SYNTHESIS:**
 
 Command: yosys 
 
@@ -1149,9 +1158,9 @@ OBSERVATION: Clearly, the waveform after synthesis indicates the simulation-synt
 
 ## DAY 5: If, case, for and for generate
 
-**SKY130RTL D5SK2 L1 Lab Incomplete IF part1:** 
+### SKY130RTL D5SK2 L1 Lab Incomplete IF part1:
 
-INCOMPLETE_IF SIMULATION: 
+**INCOMPLETE_IF SIMULATION:** 
 
 Command: iverilog incomp_if.v tb_incomp_if.v 
 
@@ -1174,7 +1183,7 @@ OBSERVATIONS:
 3)This behaviour is due to inferred latch.   
 
  
-INCOMP_IF SYNTHESIS: 
+**INCOMP_IF SYNTHESIS**
 
 Command: yosys 
 
@@ -1201,9 +1210,9 @@ OBSERVATIONS: Both the simulation and synthesis are inferring a latch, when we d
 
  
 
-**SKY130RTL D5SK2 L2 Lab Incomplete IF part2:** 
+### SKY130RTL D5SK2 L2 Lab Incomplete IF part2: 
 
-INCOMPLETE_IF SIMULATION2: 
+**INCOMPLETE_IF SIMULATION2:**
 
 Command: iverilog incomp_if2.v tb_incomp_if2.v 
 
@@ -1227,7 +1236,7 @@ OBSERVATIONS:
 
 
 
-INCOMP_IF2 SYNTHESIS: 
+**INCOMP_IF2 SYNTHESIS:**
 
 Command: yosys 
 
@@ -1256,9 +1265,9 @@ OBSERVATIONS:
 2) The D_latch has active high enable. So, when i0 and i1 are low, the output of the nor gate becomes high. Then the latch becomes active.  
 
 
-**SKY130RTL D5SK3 L1 Lab incomplete overlapping Case part1:** 
+### SKY130RTL D5SK3 L1 Lab incomplete overlapping Case part1:
 
-INCOMP_CASE SIMUALTION: 
+**INCOMP_CASE SIMUALTION:**
 
 Command: iverilog incomp_case.v tb_incomp_case.v 
 
@@ -1279,7 +1288,7 @@ The output y is i0 when select is 00. When the select is 01, the output y is i1.
 When the select bit [1] is high, the circuit latches to y value. In this y is zero. 
 
 
-INCOMP_CASE SYNTHESIS: 
+**INCOMP_CASE SYNTHESIS:** 
 
 Command: yosys 
 
@@ -1309,9 +1318,9 @@ OBSERVATIONS:
 
 
 
-**SKY130RTL D5SK3 L2 Lab incomplete overlapping Case part2:** 
+### SKY130RTL D5SK3 L2 Lab incomplete overlapping Case part2:
 
-COMP_CASE SIMUALTION: 
+**COMP_CASE SIMUALTION:**
 
 Command: iverilog comp_case.v tb_comp_case.v 
 
@@ -1327,7 +1336,7 @@ OBSERVATIONS: The output y is following y when select is 10 or 11.
 
 
 
-COMP_CASE SYNTHESIS: 
+**COMP_CASE SYNTHESIS:**
 
 Command: yosys 
 
@@ -1352,9 +1361,9 @@ Command: show
 OBSERVATIONS: Clearly, there is no latch and circuit is working fine in both simulation and synthesis. 
 
 
-**SKY130RTL D5SK3 L3 Lab incomplete overlapping Case part3:** 
+### SKY130RTL D5SK3 L3 Lab incomplete overlapping Case part3:
 
-PARTIAL_CASE_ASSIGN SIMULATION: 
+**PARTIAL_CASE_ASSIGN SIMULATION:**
 
 Command: iverilog partial_case_assign.v tb_partial_case_assign.v 
 
@@ -1369,7 +1378,7 @@ Command: gtkwave tb_partial_case_assign.vcd
 OBSERVATION: Clearly, when select is 01, the x is latching to its value. 
 
 
-PARTIAL_CASE_ASSIGN SYNHTESIS: 
+**PARTIAL_CASE_ASSIGN SYNHTESIS:**
 
 Command: yosys 
 
@@ -1396,7 +1405,7 @@ OBSERVATIONS:
 1) The dot viewer clearly shows the latch for x and there is no latch for y. 
 
 
-BAD_CASE SIMULATION: 
+**BAD_CASE SIMULATION:**
 
 Command: iverilog bad_case.v tb_bad_case.v 
 
@@ -1411,9 +1420,9 @@ Command: gtkwave tb_bad_case.vcd
 OBSERVATION: Clearly, when the select is 11, the output y is becoming 1. 
 
 
-**SKY130RTL D5SK3 L4 Lab incomplete overlapping Case part4:** 
+### SKY130RTL D5SK3 L4 Lab incomplete overlapping Case part4:
 
-BAD_CASE SYNTHESIS: 
+**BAD_CASE SYNTHESIS:**
 
 Command: yosys 
 
@@ -1437,7 +1446,7 @@ Observation: There are no latches in bad_case.
 
 
 
-BAD_MUX NETLSIT SIMULATION: 
+**BAD_MUX NETLSIT SIMULATION:**
 
 Command: write_verilog –noattr tb_bad_case_net.v 
 
@@ -1459,9 +1468,9 @@ OBSERVATION:
 
 
 
-**SKY130RTL D5SK5 L1 Lab For and For Generate part1:** 
+### SKY130RTL D5SK5 L1 Lab For and For Generate part1:
 
-MUX_GENERATE.V SIMULATION: 
+**MUX_GENERATE.V SIMULATION:**
 
 Command: iverilog mux_generate.v tb_mux_generate.v 
 
@@ -1477,7 +1486,7 @@ OBSERVATION: We can see the waveforms of a 4:1 mulitplexer designed using for lo
 
 
 
-MUX_GENERATE.V SYNTHESIS: 
+**MUX_GENERATE.V SYNTHESIS:**
 
 Command: yosys 
 
@@ -1503,9 +1512,9 @@ OBSERVATION: We can see that the synthesis has a latch. The latch just acts as a
 
 
 
-**SKY130RTL D5SK5 L2 Lab For and For Generate part2: **
+### SKY130RTL D5SK5 L2 Lab For and For Generate part2: 
 
-DEMUX_CASE SIMULATION: 
+**DEMUX_CASE SIMULATION:** 
 
 Command: iverilog demux_case.v tb_demux_case.v 
 
@@ -1520,7 +1529,7 @@ Command: gtkwave tb_demux_case.vcd
 OBSERVATION: We can see that output is being selected based on the select line. 
 
 
-DEMUX_CASE SYNTHESIS: 
+**DEMUX_CASE SYNTHESIS:**
 
 Command: yosys 
 
@@ -1544,7 +1553,7 @@ Command: show
 
 
 
-DEMUX_GENERATE.V SIMULATION: 
+**DEMUX_GENERATE.V SIMULATION:** 
 
 Command: iverilog demux_generate.v tb_demux_generate.v 
 
@@ -1558,7 +1567,7 @@ Command: gtkwave tb_demux_generate.vcd
 
 
 
-DEMUX_GENERATE SYNTHESIS: 
+**DEMUX_GENERATE SYNTHESIS:**
 
 Command: yosys 
 
@@ -1583,16 +1592,16 @@ Command: show
 OBSERVATION: In this lab, both demux_case.v and demux_generate.v has similar synthesis. However, the demux_generate.v can be scalable. 
 
 
-**SKY130RTL D5SK5 L3 Lab For and For Generate part3: **
+### SKY130RTL D5SK5 L3 Lab For and For Generate part3: 
 
 Command: gvim rca.v -o fa.v 
 
 ![image](https://user-images.githubusercontent.com/77483516/167608890-06e33bf9-4f50-489d-85ae-821ae7602be4.png)
 
 
-**SKY130RTL D5SK5 L4 Lab For and For Generate part4: **
+### SKY130RTL D5SK5 L4 Lab For and For Generate part4: 
 
-RCA SIMULATION: 
+**RCA SIMULATION:**
 
 Command: iverilog fa.v rca.v tb_rca.v 
 
@@ -1607,7 +1616,7 @@ Command: gtkwave tb_rca.vcd
 ![image](https://user-images.githubusercontent.com/77483516/167609235-2c92e831-e0e1-4cd1-b740-99fc3b5db493.png)
 
 
-RCS SYNHTESIS: 
+**RCS SYNHTESIS:**
 
 Command: yosys 
 
@@ -1634,7 +1643,7 @@ Command: show rca
 OBSERVATION: 8 FA MODULES ARE INSTANTIATED. 
 
 
-RCA GLS SYNHTESIS: 
+**RCA GLS SYNHTESIS:**
 
 Command: write_verilog –noattr tb_rca_net.v 
 
