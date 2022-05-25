@@ -1,7 +1,7 @@
 ![image](https://user-images.githubusercontent.com/77483516/167080105-2a7f5195-23eb-4444-a444-74f917136e4e.png)
 # sky130RTLDesignAndSynthesisWorkshop
 
-##Day 1 - Introduction to Verilog RTL design and Synthesis
+## Day 1 - Introduction to Verilog RTL design and Synthesis
 
 **SKY130RTL D1SK1 L1 Introduction to iverilog design test bench** 
 
