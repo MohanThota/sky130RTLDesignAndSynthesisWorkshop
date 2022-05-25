@@ -1,11 +1,11 @@
 ![image](https://user-images.githubusercontent.com/77483516/167080105-2a7f5195-23eb-4444-a444-74f917136e4e.png)
 # sky130RTLDesignAndSynthesisWorkshop
 ## Index
-* [DAY 1 - Introduction to Verilog RTL design and Synthesis]
-* [DAY 2: - Timing libs, hierarchial vs flat coding styles and effictive flop coding styles]
-* [DAY 3: Combinational and Seqeuntial optimizations]
-* [DAY 4: GLS, blocking vs non-blocking and Synhtesis and Simulation mismatch]
-* [DAY 5: If, case, for and for generate]
+* [DAY 1 - Introduction to Verilog RTL design and Synthesis](https://github.com/MohanThota/sky130RTLDesignAndSynthesisWorkshop/blob/main/README.md#day-1---introduction-to-verilog-rtl-design-and-synthesis)
+* [DAY 2: - Timing libs, hierarchial vs flat coding styles and effictive flop coding styles](https://github.com/MohanThota/sky130RTLDesignAndSynthesisWorkshop/blob/main/README.md#day-2---timing-libs-hierarchial-vs-flat-coding-styles-and-effictive-flop-coding-styles)
+* [DAY 3: Combinational and Seqeuntial optimizations](https://github.com/MohanThota/sky130RTLDesignAndSynthesisWorkshop/blob/main/README.md#day-3-combinational-and-seqeuntial-optimizations)
+* [DAY 4: GLS, blocking vs non-blocking and Synhtesis and Simulation mismatch](https://github.com/MohanThota/sky130RTLDesignAndSynthesisWorkshop/blob/main/README.md#day-4-gls-blocking-vs-non-blocking-and-synhtesis-and-simulation-mismatch)
+* [DAY 5: If, case, for and for generate](https://github.com/MohanThota/sky130RTLDesignAndSynthesisWorkshop/blob/main/README.md#day-5-if-case-for-and-for-generate)
 
 
 
