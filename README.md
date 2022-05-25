@@ -148,7 +148,7 @@ To make and display the netlsit readable.
 
 
 
-##DAY 2: - Timing libs, hierarchial vs flat coding styles and effictive flop coding styles  
+## DAY 2: - Timing libs, hierarchial vs flat coding styles and effictive flop coding styles  
 
 **SKY130RTL D2SK1 L1 Lab4 Introduction to dot :**
  
@@ -475,7 +475,7 @@ Command: !gvim mult_8_netlsit.v
 
 
 
-##DAY 3: Combinational and Sequnetail optimizations
+## DAY 3: Combinational and Sequnetail optimizations
 
 **SKY130RTL D3SK2 L1 Lab06 Combinational Logic Optimisations part1:** 
 
@@ -995,7 +995,7 @@ Command: show
 
 
 
-##DAY 4: GLS, blocking vs non-blocking and Synhtesis and Simulation mismatch
+## DAY 4: GLS, blocking vs non-blocking and Synhtesis and Simulation mismatch
 
 **SKY130RTL D4SK2 L1 Lab GLS Synth Sim Mismatch part1:** 
 
@@ -1147,7 +1147,7 @@ OBSERVATION: Clearly, the waveform after synthesis indicates the simulation-synt
 
 
 
-##DAY 5: If, case, for and for generate
+## DAY 5: If, case, for and for generate
 
 **SKY130RTL D5SK2 L1 Lab Incomplete IF part1:** 
 
