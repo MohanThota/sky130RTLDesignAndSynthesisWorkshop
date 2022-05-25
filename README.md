@@ -2,6 +2,13 @@
 # sky130RTLDesignAndSynthesisWorkshop
 ## Index
 * [DAY 1 - Introduction to Verilog RTL design and Synthesis](https://github.com/MohanThota/sky130RTLDesignAndSynthesisWorkshop/blob/main/README.md#day-1---introduction-to-verilog-rtl-design-and-synthesis)
+   * [SKY130RTL D1SK1 L1 Introduction to iverilog design test bench](https://github.com/MohanThota/sky130RTLDesignAndSynthesisWorkshop/blob/main/README.md#sky130rtl-d1sk1-l1-introduction-to-iverilog-design-test-bench)
+   * [SKY130RTL D1SK2 L1 Lab1 introduction to lab:](https://github.com/MohanThota/sky130RTLDesignAndSynthesisWorkshop/blob/main/README.md#sky130rtl-d1sk2-l1-lab1-introduction-to-lab)
+   * [SKY130RTL D1SK2 L2 Lab2 Introduction iverilog gtkwave part1:](https://github.com/MohanThota/sky130RTLDesignAndSynthesisWorkshop/blob/main/README.md#sky130rtl-d1sk2-l2-lab2-introduction-iverilog-gtkwave-part1)
+   * [SKY130RTL D1SK2 L3 Lab2 Introduction iverilog gtkwave part2:](https://github.com/MohanThota/sky130RTLDesignAndSynthesisWorkshop/blob/main/README.md#sky130rtl-d1sk2-l3-lab2-introduction-iverilog-gtkwave-part2)
+   * [SKY130RTL D1SK3 L1 Introduction to yosys:](https://github.com/MohanThota/sky130RTLDesignAndSynthesisWorkshop/blob/main/README.md#sky130rtl-d1sk3-l1-introduction-to-yosys)
+   * [SKY130RTL D1SK3 L2 introduction to logic synthesis part1 :](https://github.com/MohanThota/sky130RTLDesignAndSynthesisWorkshop/blob/main/README.md#sky130rtl-d1sk3-l2-introduction-to-logic-synthesis-part1-)
+   * []()
 * [DAY 2: - Timing libs, hierarchial vs flat coding styles and effictive flop coding styles](https://github.com/MohanThota/sky130RTLDesignAndSynthesisWorkshop/blob/main/README.md#day-2---timing-libs-hierarchial-vs-flat-coding-styles-and-effictive-flop-coding-styles)
 * [DAY 3: Combinational and Seqeuntial optimizations](https://github.com/MohanThota/sky130RTLDesignAndSynthesisWorkshop/blob/main/README.md#day-3-combinational-and-seqeuntial-optimizations)
 * [DAY 4: GLS, blocking vs non-blocking and Synhtesis and Simulation mismatch](https://github.com/MohanThota/sky130RTLDesignAndSynthesisWorkshop/blob/main/README.md#day-4-gls-blocking-vs-non-blocking-and-synhtesis-and-simulation-mismatch)
@@ -93,7 +100,7 @@ For example, consider this situation:
 In this situation the clock should accommodate the propagation delay, combinational logic delay and setup time of the B D flipflop. As the time is inversely proportional to frequency the smaller the time the faster the frequency. If we have faster cells, the time taken for the operation will be less. Less time implies maximum frequency. 
 
 
-**SKY130RTL D1SK3 L3 introduction to logic synthesis part2:**
+### SKY130RTL D1SK3 L3 introduction to logic synthesis part2:
 
  Why do we need slower cells? 
 
