@@ -1,8 +1,12 @@
 ![image](https://user-images.githubusercontent.com/77483516/167080105-2a7f5195-23eb-4444-a444-74f917136e4e.png)
 # sky130RTLDesignAndSynthesisWorkshop
+## Tools Used
+   * iverilog
+   * yosys
+   * gtkwave
+   
 ## Index
-* [DAY 1 - Introduction to Verilog RTL design and Synthesis](https://github.com/MohanThota/sky130RTLDesignAndSynthesisWorkshop/blob/main/README.md#day-1---introduction-to-verilog-rtl-design-and-synthesis)
-   * [SKY130RTL D1SK1 L1 Introduction to iverilog design test bench](https://github.com/MohanThota/sky130RTLDesignAndSynthesisWorkshop/blob/main/README.md#sky130rtl-d1sk1-l1-introduction-to-iverilog-design-test-bench)
+* [DAY 1 - Introduction to Verilog RTL design and Synthesis](https://github.com/MohanThota/sky130RTLDesignAndSynthesisWorkshop/blob/main/README.md#day-1---introduction-to-verilog-rtl-design-and-synthesis)    * [SKY130RTL D1SK1 L1 Introduction to iverilog design test bench](https://github.com/MohanThota/sky130RTLDesignAndSynthesisWorkshop/blob/main/README.md#sky130rtl-d1sk1-l1-introduction-to-iverilog-design-test-bench)
    * [SKY130RTL D1SK2 L1 Lab1 introduction to lab:](https://github.com/MohanThota/sky130RTLDesignAndSynthesisWorkshop/blob/main/README.md#sky130rtl-d1sk2-l1-lab1-introduction-to-lab)
    * [SKY130RTL D1SK2 L2 Lab2 Introduction iverilog gtkwave part1:](https://github.com/MohanThota/sky130RTLDesignAndSynthesisWorkshop/blob/main/README.md#sky130rtl-d1sk2-l2-lab2-introduction-iverilog-gtkwave-part1)
    * [SKY130RTL D1SK2 L3 Lab2 Introduction iverilog gtkwave part2:](https://github.com/MohanThota/sky130RTLDesignAndSynthesisWorkshop/blob/main/README.md#sky130rtl-d1sk2-l3-lab2-introduction-iverilog-gtkwave-part2)
