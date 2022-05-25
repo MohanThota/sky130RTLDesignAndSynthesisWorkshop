@@ -1,15 +1,15 @@
 ![image](https://user-images.githubusercontent.com/77483516/167080105-2a7f5195-23eb-4444-a444-74f917136e4e.png)
 # sky130RTLDesignAndSynthesisWorkshop
 ## Index
-### Day 1 - Introduction to Verilog RTL design and Synthesis
-### DAY 2: - Timing libs, hierarchial vs flat coding styles and effictive flop coding styles
-### DAY 3: Combinational and Seqeuntial optimizations
-### DAY 4: GLS, blocking vs non-blocking and Synhtesis and Simulation mismatch
-### DAY 5: If, case, for and for generate
+* [DAY 1 - Introduction to Verilog RTL design and Synthesis]
+* [DAY 2: - Timing libs, hierarchial vs flat coding styles and effictive flop coding styles]
+* [DAY 3: Combinational and Seqeuntial optimizations]
+* [DAY 4: GLS, blocking vs non-blocking and Synhtesis and Simulation mismatch]
+* [DAY 5: If, case, for and for generate]
 
 
 
-## Day 1 - Introduction to Verilog RTL design and Synthesis
+## DAY 1 - Introduction to Verilog RTL design and Synthesis
 
 ### SKY130RTL D1SK1 L1 Introduction to iverilog design test bench
 
