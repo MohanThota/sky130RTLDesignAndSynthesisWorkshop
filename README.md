@@ -1,6 +1,7 @@
 ![image](https://user-images.githubusercontent.com/77483516/167080105-2a7f5195-23eb-4444-a444-74f917136e4e.png)
 # sky130RTLDesignAndSynthesisWorkshop
 ## Tools Used
+I utilised three opensource tools for this 5-Day workshop. They are 
    * iverilog
    * yosys
    * gtkwave
